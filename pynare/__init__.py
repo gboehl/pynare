@@ -4,11 +4,25 @@
 import os
 
 
+def isnotebook():
+    try:
+        shell = get_ipython().__class__.__name__
+        if shell == 'ZMQInteractiveShell':
+            return True   # Jupyter notebook or qtconsole
+        elif shell == 'TerminalInteractiveShell':
+            return False  # Terminal running IPython
+        else:
+            return False  # Other type (?)
+    except:
+        return False      # Probably standard Python interpreter
+
+
 class pynare(object):
 
     def __init__(self, modpath, engine='matlab'):
 
         self.modpath = modpath
+        self.isnotebook = isnotebook()
 
         if engine == 'matlab':
 
@@ -36,10 +50,11 @@ class pynare(object):
             raise SyntaxError("mod-file must end with '*.mod'.")
 
         self.eng.eval('cd '+os.path.dirname(modpath), nargout=0)
-        self.eng.eval('dynare '+os.path.basename(modpath)[:-4], nargout=0)
 
-        self.workspace = self.eng.workspace
-        self.oo_ = self.eng.workspace['oo_']
+        if self.isnotebook:
+            print("Note: pynare is running in a Jupyter notebook or  qtconsole. Both do not allow to (easily) redirect output from the matlab process to the interface. For that reason the '*.log' output will be blobbed at the end of the calculation, which may be incomplete.\n")
+
+        self.run()
 
     def run(self):
 
@@ -47,3 +62,8 @@ class pynare(object):
 
         self.workspace = self.eng.workspace
         self.oo_ = self.eng.workspace['oo_']
+
+        if self.isnotebook:
+            logfile = self.modpath[:-4] + '.log'
+            lf = open(logfile, 'r')
+            print(lf.read())
