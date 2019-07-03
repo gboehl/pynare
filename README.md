@@ -7,7 +7,7 @@ This is a slim `Python` wrapper around **`dynare`**. It runs the `*.mod` file an
 
 ## Motivation
 
-The declared goal of this project is to provide access to **`dynare`** without having to learn and use `Matlab`/`Octave`. This reflects the acknowledgement that the translation of the **`dynare`** codebase to a modern open-source alternative is a major effort which may take a while. Meanwhile, **`pynare`** encourages young researchers to focus on modern open source languages and, as the whole interface is pure Python, still allows them to use **`dynare`** without Matlab.
+The declared goal of this project is to provide access to **`dynare`** without having to learn and use `Matlab`/`Octave`. This reflects the acknowledgement that the translation of the **`dynare`** codebase to a modern open-source alternative is a major effort which may take a while. Meanwhile, **`pynare`** encourages young researchers to focus on modern open source languages and, as the whole interface is pure `Python`, still allows them to use **`dynare`** without Matlab.
 
 
 Usage:
