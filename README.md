@@ -1,6 +1,6 @@
 # pynare
 
-This is a slim Python wrapper around **Dynare**. It runs the mod file and then provides access to the workspace.
+This is a slim Python wrapper around **Dynare**. It runs the `*.mod` file and then provides access to the workspace.
 
 **NOTE:** This is at a very early stage and not well-tested (and not tested at all on Windows). You are very welcome to give comments via the bug reports. For now this does not work well in the Jupyter Notebook. The reason is that it seems non-trivial to redirect printed matlab output lines to Notebook cells. Hints are appreciated.
 
