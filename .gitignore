@@ -2,3 +2,4 @@ __pycache__/
 build
 dist
 pynare.egg-info
+test

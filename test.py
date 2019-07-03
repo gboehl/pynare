@@ -49,6 +49,9 @@ class pynare(object):
 
 modpath = '/home/gboehl/rsh/bs18/dynare/SW_QE.mod'
 mod0 = pynare(modpath)
+mod0.workspace.__dir__()
+mod0.workspace['beta']
+mod0.oo_['irfs'].
 
 """
 import oct2py, os
