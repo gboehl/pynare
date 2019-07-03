@@ -1,6 +1,6 @@
 # pynare
 
-This is a slim Python wrapper around **Dynare**. It runs the `*.mod` file and then provides access to the workspace.
+This is a slim Python wrapper around **Dynare**. It runs the `*.mod` file and then provides access to the dynare workspace.
 
 **NOTE:** This is at a very early stage and not well-tested (and not tested at all on Windows). You are very welcome to give comments via the bug reports. For now this does not work well in the Jupyter Notebook. The reason is that it seems non-trivial to redirect printed matlab output lines to Notebook cells. Hints are appreciated.
 
@@ -8,7 +8,7 @@ This is a slim Python wrapper around **Dynare**. It runs the `*.mod` file and th
 Usage:
 ```
 from pynare import pynare
-modfile = '\home\cooluser\greatmodel.mod'
+modfile = '/path/to/greatmodel.mod'
 res = pynare(modfile)
 ```
 
@@ -28,14 +28,14 @@ irfs = res.oo_['irfs']      # for instance get your impulse response functions (
 
 ## Installation with `pip` (simple)
 
-The simplest way is to clone the repository and then from within the cloned folder run (Windows user from the Anaconda Prompt):
+The simplest way is to [clone](https://github.com/gboehl/pynare/archive/master.zip) the repository, navigate to the cloned folder and run (Windows user from the Anaconda Prompt):
 ```
 pip3 install .
 ```
 
 ## Installation with `pip` (elegant via `git`)
 
-The handy way is to first install `git`. Linux users just use their respective repos. Windows users get it here: https://git-scm.com/download/win
+The handy way is to first install `git`. Linux users just use their respective repos, Windows users get it here: https://git-scm.com/download/win
 
 ```
 pip3 install git+https://github.com/gboehl/pynare
