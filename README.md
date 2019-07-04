@@ -2,7 +2,7 @@
 
 This is a slim `Python` wrapper around **`dynare`**. It runs the `*.mod` file and then provides access to the dynare workspace. 
 
-**NOTE:** This is at a very early stage and not well-tested (and not tested at all on Windows). You are very welcome to give comments via the [bug tracker](https://github.com/gboehl/pynare/issues). For now this does not work well in the Jupyter Notebook. The reason is that it seems non-trivial to redirect printed matlab output to Notebook cells. Hints are appreciated.
+**NOTE:** This is at a very early stage and not well-tested (and not tested at all on Windows). You are very welcome to give comments via the [bug tracker](https://github.com/gboehl/pynare/issues). For now there is no live updating in the Jupyter Notebook, but information will be parsed after the calculation is finished. The reason is that it seems non-trivial to redirect printed matlab output to Notebook cells and multiprocessing is not doing great in the Notebook.
 
 
 ## Motivation
