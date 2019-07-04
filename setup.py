@@ -10,24 +10,27 @@ import warnings
 from os import path
 from setuptools import setup, find_packages
 
-print('Installing the matlab engine...', end='')
-
 try:
-    matlab = MatlabSession()
-
-    matlab.eval("cd (fullfile(matlabroot,'extern','engines','python'))")
-    matlab.eval("system('python setup.py install')")
-
+    import matlab.engine
+    print('matlab engine already installed.\n')
+except:
+    print('Installing the matlab engine...', end='')
     try:
-        import matlab.engine
-        print('done.\n')
+        matlab = MatlabSession()
+
+        matlab.eval("cd (fullfile(matlabroot,'extern','engines','python'))")
+        matlab.eval("system('python setup.py install')")
+
+        try:
+            import matlab.engine
+            print('done.\n')
+        except:
+            warnings.warn(
+                "\nFailed to install matlab engine. In any case you can use pynare with engine='octave'.\n")
+
     except:
         warnings.warn(
-            "\nFailed to install matlab engine. In any case you can use pynare with engine='octave'.\n")
-
-except:
-    warnings.warn(
-        "\nFailed to access matlab installation. Is it installed? In any case you can use pynare with engine='octave'.\n")
+            "\nFailed to access matlab installation. Is it installed? In any case you can use pynare with engine='octave'.\n")
 
 
 setup(
