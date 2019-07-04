@@ -107,7 +107,7 @@ class pynare(object):
         self.eng.eval('cd '+os.path.dirname(modpath), nargout=0)
 
         if self.isnotebook:
-            print("Note: pynare is running in a Jupyter notebook or  qtconsole. Both do not allow to (easily) redirect output from the matlab process to the interface. For that reason the '*.log' output will be blobbed just at the end of the calculation.\n")
+            print("Note: pynare is running in a Jupyter notebook or qtconsole. Both do not allow to (easily) redirect output from the matlab process to the interface. For that reason the '*.log' output will be blobbed just at the end of the calculation.\n")
 
         self.run()
 
@@ -118,9 +118,9 @@ class pynare(object):
 
         if verbose:
             if self.isnotebook:
+                import tempfile
                 old_stdout = sys.stdout
-                sys.stdout = io.TextIOWrapper(
-                    open('/home/gboehl/lala'), encoding='UTF-8')
+                sys.stdout = tempfile.TemporaryFile()
             else:
                 from pathos.multiprocessing import ProcessPool
                 pool = ProcessPool(nodes=2)
