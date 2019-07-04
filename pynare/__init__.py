@@ -72,9 +72,10 @@ def print_progress(logfile):
 
 class pynare(object):
 
-    def __init__(self, modpath, engine='matlab'):
+    def __init__(self, modpath, engine='matlab', verbose=True):
 
         self.modpath = modpath
+        self.verbose = verbose
         self.lf = modpath[:-4] + '.log'
         self.isnotebook = isnotebook()
 
@@ -110,28 +111,32 @@ class pynare(object):
 
         self.run()
 
-    def run(self):
+    def run(self, verbose=None):
 
-        if self.isnotebook:
-            old_stdout = sys.stdout
-            sys.stdout = io.TextIOWrapper(
-                open('/home/gboehl/lala'), encoding='UTF-8')
-        else:
-            from pathos.multiprocessing import ProcessPool
-            pool = ProcessPool(nodes=2)
-            pipe0 = pool.apipe(print_progress, self.lf)
+        if verbose is None:
+            verbose = self.verbose
+
+        if verbose:
+            if self.isnotebook:
+                old_stdout = sys.stdout
+                sys.stdout = io.TextIOWrapper(
+                    open('/home/gboehl/lala'), encoding='UTF-8')
+            else:
+                from pathos.multiprocessing import ProcessPool
+                pool = ProcessPool(nodes=2)
+                pipe0 = pool.apipe(print_progress, self.lf)
 
         with PipeOutput(self.lf, sys.stdout):
             self.eng.eval(
                 'dynare '+os.path.basename(self.modpath)[:-4], nargout=0)
 
-        if self.isnotebook:
-            sys.stdout = old_stdout
-            lf = open(self.lf, 'r')
-            print(lf.read())
-        else:
-            pipe0
-            # pool.terminate()
+        if verbose:
+            if self.isnotebook:
+                sys.stdout = old_stdout
+                lf = open(self.lf, 'r')
+                print(lf.read())
+            else:
+                pipe0
 
         self.workspace = self.eng.workspace
         self.oo_ = self.eng.workspace['oo_']
