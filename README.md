@@ -1,8 +1,13 @@
 # pynare
 
-This is a slim Python wrapper around **Dynare**. It runs the `*.mod` file and then provides access to the dynare workspace.
+This is a slim `Python` wrapper around **`dynare`**. It runs the `*.mod` file and then provides access to the dynare workspace. 
 
-**NOTE:** This is at a very early stage and not well-tested (and not tested at all on Windows). You are very welcome to give comments via the bug reports. For now this does not work well in the Jupyter Notebook. The reason is that it seems non-trivial to redirect printed matlab output lines to Notebook cells. Hints are appreciated.
+**NOTE:** This is at a very early stage and not well-tested (and not tested at all on Windows). You are very welcome to give comments via the [bug tracker](https://github.com/gboehl/pynare/issues). For now this does not work well in the Jupyter Notebook. The reason is that it seems non-trivial to redirect printed matlab output to Notebook cells. Hints are appreciated.
+
+
+## Motivation
+
+The declared goal of this project is to provide access to **`dynare`** without having to learn and use `Matlab`/`Octave`. This reflects the acknowledgement that the translation of the **`dynare`** codebase to a more efficient open source alternative is a major effort which may take a while. Meanwhile, **`pynare`** encourages young researchers to focus on modern open source languages and, as the whole interface is pure `Python`, still allows them to use **`dynare`** without Matlab.
 
 
 Usage:
