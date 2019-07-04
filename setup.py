@@ -40,5 +40,6 @@ setup(
     author_email='admin@gregorboehl.com',
     description='run DYNARE from python and access its workspace',
     packages=['pynare'],
-    install_requires=[],
+    install_requires=['numpy', 
+                      'pathos'],
 )
