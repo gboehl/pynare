@@ -2,7 +2,7 @@
 
 This is a slim `Python` wrapper around **`dynare`**. It runs the `*.mod` file and then provides access to the dynare workspace. 
 
-**NOTE:** This is at a very early stage and not well-tested (and not tested at all on Windows). You are very welcome to give comments via the [bug tracker](https://github.com/gboehl/pynare/issues). For now there is no live updating in the Jupyter Notebook, but information will be parsed after the calculation is finished. The reason is that it seems non-trivial to redirect printed matlab output to Notebook cells and multiprocessing is not doing great in the Notebook.
+**NOTE:** This is at a very early stage and not well-tested (and not tested at all on Windows). You are very welcome to give comments via the [bug tracker](https://github.com/gboehl/pynare/issues). For now there is no live updating in the Jupyter Notebook, but information will be parsed after the calculation is finished. The reason is that it seems non-trivial to redirect printed matlab output (actual print output via `ctypes`) to Notebook cells while at the same time multiprocessing is not doing great in the Notebook.
 
 
 ## Motivation
@@ -10,7 +10,8 @@ This is a slim `Python` wrapper around **`dynare`**. It runs the `*.mod` file an
 The declared goal of this project is to provide access to **`dynare`** without having to learn and use `Matlab`/`Octave`. This reflects the acknowledgement that the translation of the **`dynare`** codebase to a more efficient open source alternative is a major effort which may take a while. Meanwhile, **`pynare`** encourages young researchers to focus on modern open source languages and, as the whole interface is pure `Python`, still allows them to use **`dynare`** without Matlab.
 
 
-Usage:
+## Usage
+Package import and running a modfile:
 ```
 from pynare import pynare
 modfile = '/path/to/greatmodel.mod'
