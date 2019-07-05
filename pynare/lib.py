@@ -50,6 +50,7 @@ def plot_eps(path, title):
     from PIL import Image
     import matplotlib.pyplot as plt
 
+
     figure = Image.open(path)
     # rescale it
     figure.load(scale=2)
@@ -60,6 +61,7 @@ def plot_eps(path, title):
     plt.autoscale(tight=True)
 
     plt.imshow(figure)
+    plt.ion()
     plt.show()
 
 
