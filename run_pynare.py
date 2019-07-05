@@ -14,3 +14,4 @@ try:
 except:
     mod0 = Pynare(modpath, engine='octave')
 
+input('\n[press Enter to exit]')
