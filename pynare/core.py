@@ -7,9 +7,10 @@ import sys
 import tempfile
 from .lib import PipeOutput, isnotebook, print_progress, plot_eps
 
+
 class Pynare(object):
 
-    def __init__(self, modpath, engine='matlab', plot=None, verbose=True):
+    def __init__(self, modpath, engine=None, plot=None, verbose=True):
 
         if modpath[-4:] != '.mod':
             raise SyntaxError("mod-file must be of '*.mod'-type.")
@@ -23,12 +24,21 @@ class Pynare(object):
         self.engine = engine
         self.isnotebook = isnotebook()
 
+        if engine != 'octave':
+            try:
+                import matlab.engine
+            except Exception as e:
+                if engine == 'matlab':
+                    raise e
+                else:
+                    print('Failed to load matlab.engine. Falling back on octave engine.\n
+                          The following error was raised: ', e)
+                    engine = 'octave'
+
         if engine == 'matlab':
 
             if plot is None:
                 self.plot = False
-
-            import matlab.engine
 
             # the hack with a global seems necessary because matlab.engine.connect_matlab() does not work as expected and otherwise many engines would be initialized
             global mlengine
@@ -39,7 +49,7 @@ class Pynare(object):
             self.eng = mlengine
 
         elif engine == 'octave':
-            
+
             if plot is None:
 
                 self.plot = True
@@ -52,7 +62,7 @@ class Pynare(object):
 
         else:
             raise NotImplementedError(
-                "'engine' must either be 'matlab' or 'octave'")
+                "'engine' must either be 'matlab'(default) or 'octave'")
 
         self.eng.eval('cd '+self.dirpath, nargout=0)
 
@@ -78,7 +88,7 @@ class Pynare(object):
         if self.engine == 'matlab':
 
             with PipeOutput(self.logfile, sys.stdout):
-                self.eng.eval( 'dynare '+self.modname, nargout=0)
+                self.eng.eval('dynare '+self.modname, nargout=0)
 
             self.workspace = self.eng.workspace
             self.oo_ = self.eng.workspace['oo_']
@@ -90,7 +100,7 @@ class Pynare(object):
 
             with PipeOutput(self.logfile, sys.stdout):
                 self.eng.feval('dynare', self.modname, plot_dir=tempdir)
-            
+
             oct_ws_list = self.eng.eval('who', nout=1)
             self.workspace = {var: self.eng.pull(var) for var in oct_ws_list}
             self.oo_ = self.workspace['oo_']
@@ -100,7 +110,8 @@ class Pynare(object):
             epsfiles = [f for f in os.listdir(self.dirpath) if '.eps' in f]
 
             for fig_name in epsfiles:
-                plot_eps(os.path.join(self.dirpath,fig_name), fig_name.replace(self.modname+'_','').replace('.eps',''))
+                plot_eps(os.path.join(self.dirpath, fig_name), fig_name.replace(
+                    self.modname+'_', '').replace('.eps', ''))
 
         if verbose:
             if self.isnotebook:

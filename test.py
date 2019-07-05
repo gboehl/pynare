@@ -5,9 +5,9 @@ from pynare import Pynare
 
 modpath = '/home/gboehl/rsh/bs18/dynare/SW_QE.mod'
 
-# mod0 = pynare(modpath)
-# mod0 = pynare(modpath, verbose=False)
-mod0 = Pynare(modpath, engine='octave')
+mod0 = Pynare(modpath)
+mod0 = Pynare(modpath, engine='matlab')
+# mod0 = Pynare(modpath, engine='octave')
 
 mod0.workspace
 mod0.oo_['irfs']

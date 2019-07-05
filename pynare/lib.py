@@ -4,6 +4,7 @@
 import os
 import sys
 
+
 class PipeOutput(object):
     '''
     A context manager that redirects stdout for its scope, usage:
@@ -43,6 +44,7 @@ def isnotebook():
     except:
         return False      # Probably standard Python interpreter
 
+
 def plot_eps(path, title):
 
     from PIL import Image
@@ -53,12 +55,13 @@ def plot_eps(path, title):
     figure.load(scale=2)
     # create matplotlib figure in respective size
     fig = plt.figure(figsize=tuple([x/100 for x in figure.size]))
-    ax = plt.axes([0,0,1,1], frameon=False)
+    ax = plt.axes([0, 0, 1, 1], frameon=False)
     plt.suptitle(title, fontsize=16, va='bottom', y=.02)
     plt.autoscale(tight=True)
 
     plt.imshow(figure)
     plt.show()
+
 
 def print_progress(logfile):
 
