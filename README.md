@@ -13,9 +13,9 @@ The declared goal of this project is to provide access to **`dynare`** without h
 ## Usage
 Package import and running a modfile:
 ```
-from pynare import pynare
+from pynare import Pynare
 modfile = '/path/to/greatmodel.mod'
-res = pynare(modfile)
+res = Pynare(modfile)
 ```
 
 This will give you the usual info about how the Blanchard-Kahn conditions are messed up. Then access the attributes:

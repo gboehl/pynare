@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import shutil
 import io
 import sys
 import tempfile
@@ -21,21 +22,26 @@ class Pynare(object):
         self.logfile = modpath[:-4] + '.log'
 
         self.verbose = verbose
-        self.engine = engine
         self.isnotebook = isnotebook()
 
         if engine != 'octave':
+            if engine is not None and not 'matlag':
+                raise NotImplementedError(
+                    "'engine' must either be 'matlab'(default) or 'octave'")
             try:
                 import matlab.engine
+                self.engine_type = 'matlab'
             except Exception as e:
                 if engine == 'matlab':
                     raise e
                 else:
-                    print('Failed to load matlab.engine. Falling back on octave engine.\n
-                          The following error was raised: ', e)
-                    engine = 'octave'
+                    print(
+                        'Failed to load matlab.engine. Falling back on octave engine. The following error was raised: ', e)
+                    self.engine_type = 'octave'
+        else:
+            self.engine_type = 'octave'
 
-        if engine == 'matlab':
+        if self.engine_type == 'matlab':
 
             if plot is None:
                 self.plot = False
@@ -48,7 +54,7 @@ class Pynare(object):
 
             self.eng = mlengine
 
-        elif engine == 'octave':
+        else:
 
             if plot is None:
 
@@ -60,13 +66,9 @@ class Pynare(object):
 
             self.eng = octave
 
-        else:
-            raise NotImplementedError(
-                "'engine' must either be 'matlab'(default) or 'octave'")
-
         self.eng.eval('cd '+self.dirpath, nargout=0)
 
-        if self.isnotebook:
+        if self.isnotebook and self.engine_type == 'matlab':
             print("Note: pynare is running in a Jupyter notebook or qtconsole. Both do not allow to (easily) redirect output from the matlab process to the interface. For that reason the '*.log' output will be blobbed just at the end of the calculation.\n")
 
         self.run()
@@ -85,7 +87,7 @@ class Pynare(object):
                 pool = ProcessPool(nodes=2)
                 pipe0 = pool.apipe(print_progress, self.logfile)
 
-        if self.engine == 'matlab':
+        if self.engine_type == 'matlab':
 
             with PipeOutput(self.logfile, sys.stdout):
                 self.eng.eval('dynare '+self.modname, nargout=0)
@@ -96,10 +98,12 @@ class Pynare(object):
         else:
 
             # need to dump the original octave plots somewhere
-            tempdir = tempfile.gettempdir()
+            pltdir = os.path.join(tempfile.gettempdir(), 'plt')
+            if not os.path.isdir(pltdir):
+                os.mkdir(pltdir)
 
             with PipeOutput(self.logfile, sys.stdout):
-                self.eng.feval('dynare', self.modname, plot_dir=tempdir)
+                self.eng.feval('dynare', self.modname, plot_dir=pltdir)
 
             oct_ws_list = self.eng.eval('who', nout=1)
             self.workspace = {var: self.eng.pull(var) for var in oct_ws_list}
@@ -107,16 +111,28 @@ class Pynare(object):
 
         if self.plot:
 
-            epsfiles = [f for f in os.listdir(self.dirpath) if '.eps' in f]
+            if self.isnotebook:
+                self.imgs = self.eng.extract_figures(pltdir)
+                for img in self.imgs:
+                    display(img)
 
-            for fig_name in epsfiles:
-                plot_eps(os.path.join(self.dirpath, fig_name), fig_name.replace(
-                    self.modname+'_', '').replace('.eps', ''))
+            else:
+                epsfiles = [f for f in os.listdir(self.dirpath) if '.eps' in f]
+
+                for figname in epsfiles:
+                    figpath = os.path.join(self.dirpath, figname)
+                    figtitle = figname.replace(
+                        self.modname+'_', '').replace('.eps', '')
+                    plot_eps(figpath, figtitle)
+
+        if self.engine_type == 'octave':
+            shutil.rmtree(pltdir)
 
         if verbose:
             if self.isnotebook:
                 sys.stdout = old_stdout
-                lf = open(self.logfile, 'r')
-                sys.stdout.write(lf.read())
+                if self.engine_type == 'matlab':
+                    lf = open(self.logfile, 'r')
+                    sys.stdout.write(lf.read())
             else:
                 pipe0
