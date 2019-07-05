@@ -41,7 +41,7 @@ pip3 install .
 
 ## Installation with `pip` (elegant via `git`)
 
-The handy way is to first install `git`. Linux users just use their respective repos, Windows users get it here: https://git-scm.com/download/win
+The handy way is to install via the `git`-command. If `git` is not yet installed, Linux users just use their respective repos, Windows users get it here: https://git-scm.com/download/win
 
 ```
 pip3 install git+https://github.com/gboehl/pynare
