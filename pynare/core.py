@@ -112,9 +112,13 @@ class Pynare(object):
         if self.plot:
 
             if self.isnotebook:
-                self.imgs = self.eng.extract_figures(pltdir)
-                for img in self.imgs:
-                    display(img)
+                if self.engine_type == 'octave':
+                    self.imgs = self.eng.extract_figures(pltdir)
+                    for img in self.imgs:
+                        display(img)
+                else:
+                    print(
+                        "'plot=True' not supported with matlab engine in Jupyter notebook.")
 
             else:
                 epsfiles = [f for f in os.listdir(self.dirpath) if '.eps' in f]
