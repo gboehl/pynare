@@ -2,12 +2,15 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from pynare import pynare
+from pynare import Pynare
 
 if len(sys.argv) < 2:
     raise SyntaxError('No *.mod file provided!')
 
 modpath = sys.argv[1]
 
-mod0 = pynare(modpath)
+try:
+    mod0 = Pynare(modpath)
+except:
+    mod0 = Pynare(modpath, engine='octave')
 

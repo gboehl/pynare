@@ -1,9 +1,5 @@
-
-# import  sys
-# directory = '/home/gboehl/repos/pynare/'
-# sys.path.append(directory)
-# directory = '/home/gboehl/repos/matlab_wrapper3/'
-# sys.path.append(directory)
+#!/bin/python2
+# -*- coding: utf-8 -*-
 
 from matlab_wrapper.matlab_session import MatlabSession
 import warnings
@@ -40,6 +36,7 @@ setup(
     author_email='admin@gregorboehl.com',
     description='run DYNARE from python and access its workspace',
     packages=['pynare'],
+    scripts=['run_pynare.py'],
     install_requires=['numpy', 
                       'pathos'],
 )
