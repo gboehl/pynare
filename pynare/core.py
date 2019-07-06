@@ -60,7 +60,7 @@ class Pynare(object):
 
                 self.plot = True
 
-                print("The original octave plots do not work properly with oct2py. For that reason I'm retrieving the stored *.eps figures from the dynare folder. This is somewhat old fasioned and does not allow for interactive figures.\n")
+                print("The original octave plots do not work properly with oct2py. For that reason I am retrieving the stored *.eps figures from the dynare folder. This is somewhat old fasioned and does not allow for interactive figures.\n")
 
             from oct2py import octave
 
@@ -146,16 +146,26 @@ class Pynare(object):
                 pipe0
 
 
-def run():
+def pynare(modpath=None, **kwargs):
 
-    if len(sys.argv) < 2:
-        raise SyntaxError('No *.mod file provided!')
+    if modpath is None:
+        if len(sys.argv) < 2:
+            raise SyntaxError('No *.mod file provided!')
 
-    modpath = sys.argv[1]
+        modpath = sys.argv[1]
+        need_pause = True
+    else:
+        need_pause = False
 
-    try:
-        mod0 = Pynare(modpath)
-    except:
-        mod0 = Pynare(modpath, engine='octave')
+    if not 'engine' in kwargs.keys():
+        try:
+            mod_obj = Pynare(modpath, engine='matlab', **kwargs)
+        except:
+            mod_obj = Pynare(modpath, engine='octave', **kwargs)
+    else:
+        mod_obj = Pynare(modpath, **kwargs)
 
-    input('\n[press Enter to exit]')
+    if need_pause:
+        input('\n[press Enter to exit]')
+    else:
+        return mod_obj
