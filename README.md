@@ -54,4 +54,4 @@ The handy way is to install via the `git`-command. If `git` is not yet installed
 pip3 install git+https://github.com/gboehl/pynare
 ```
 
-Of course, installing `dynare` is your responibility.
+Of course, installing `dynare` remains your responibility.
