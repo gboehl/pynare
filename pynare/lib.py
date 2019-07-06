@@ -17,7 +17,6 @@ class PipeOutput(object):
         stdout.flush()
         self._origstdout = stdout
         self._oldstdout_fno = os.dup(stdout.fileno())
-        # self._devnull = os.open(os.devnull, os.O_WRONLY)
         self._devnull = os.open(logfile, os.O_WRONLY)
 
     def __enter__(self):
@@ -33,6 +32,7 @@ class PipeOutput(object):
 
 
 def isnotebook():
+
     try:
         shell = get_ipython().__class__.__name__
         if shell == 'ZMQInteractiveShell':
@@ -49,7 +49,6 @@ def plot_eps(path, title):
 
     from PIL import Image
     import matplotlib.pyplot as plt
-
 
     figure = Image.open(path)
     # rescale it
@@ -68,9 +67,6 @@ def plot_eps(path, title):
 def print_progress(logfile):
 
     import time
-
-    blank = open(logfile, 'w')
-    blank.close()
 
     f = open(logfile, 'r')
     p = 0

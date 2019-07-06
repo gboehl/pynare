@@ -78,6 +78,10 @@ class Pynare(object):
         if verbose is None:
             verbose = self.verbose
 
+        # ensure that the logfile exists and that its empty
+        blank = open(self.logfile, 'w')
+        blank.close()
+
         if verbose:
             if self.isnotebook:
                 old_stdout = sys.stdout
@@ -140,3 +144,18 @@ class Pynare(object):
                     sys.stdout.write(lf.read())
             else:
                 pipe0
+
+
+def run():
+
+    if len(sys.argv) < 2:
+        raise SyntaxError('No *.mod file provided!')
+
+    modpath = sys.argv[1]
+
+    try:
+        mod0 = Pynare(modpath)
+    except:
+        mod0 = Pynare(modpath, engine='octave')
+
+    input('\n[press Enter to exit]')

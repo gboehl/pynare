@@ -36,7 +36,14 @@ setup(
     author_email='admin@gregorboehl.com',
     description='run DYNARE from python and access its workspace',
     packages=['pynare'],
-    scripts=['run_pynare.py'],
+    # scripts=['run_pynare.py'],
+    # scripts=['pynare.py'],
+    # scripts=['pynare:.py'],
+    entry_points={
+          'console_scripts': [
+              'pynare = pynare.core:run'
+          ]
+    },
     install_requires=['numpy', 
                       'pathos'],
 )
