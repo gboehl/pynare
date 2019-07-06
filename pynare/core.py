@@ -33,10 +33,10 @@ class Pynare(object):
                 self.engine_type = 'matlab'
             except Exception as e:
                 if engine == 'matlab':
-                    raise e
+                    raise
                 else:
                     print(
-                        'Failed to load matlab.engine. Falling back on octave engine. The following error was raised: ', e)
+                        '\nFailed to load matlab.engine. Falling back on octave engine. The following error was raised:\n', e)
                     self.engine_type = 'octave'
         else:
             self.engine_type = 'octave'
@@ -60,7 +60,7 @@ class Pynare(object):
 
                 self.plot = True
 
-                print("The original octave plots do not work properly with oct2py. For that reason I am retrieving the stored *.eps figures from the dynare folder. This is somewhat old fasioned and does not allow for interactive figures.\n")
+                print("\nThe original octave plots do not work properly with oct2py. For that reason I am retrieving the stored *.eps figures from the dynare folder. This is somewhat old fasioned and does not allow for interactive figures.\n")
 
             from oct2py import octave
 
@@ -144,6 +144,14 @@ class Pynare(object):
                     sys.stdout.write(lf.read())
             else:
                 pipe0
+
+    def get_log(self):
+
+        open_lf = open(self.logfile, 'r')
+        log_str = open_lf.read()
+        sys.stdout.write(log_str)
+
+        return log_str
 
 
 def pynare(modpath=None, **kwargs):
