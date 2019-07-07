@@ -50,7 +50,7 @@ html_theme = 'alabaster'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+# html_static_path = ['_static']
 
 master_doc = 'index'
 
@@ -60,4 +60,19 @@ html_context = {
     "github_repo": "pynare", # Repo name
     "github_version": "master", # Version
     "conf_py_path": "/", # Path in the checkout to the docs root
+}
+
+# html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'] }
+html_theme_options = {
+    # 'github_banner': True,
+    'description': 'A Python interface to DYNARE',
+    'github_button': True,
+    'github_repo': 'pynare',
+    'github_user': 'gboehl',
+    'sidebar_collapse': False,
+    # 'collapse_navigation': False,
+    # 'sticky_navigation': True,
+    # 'navigation_depth': 4,
+    # 'includehidden': True,
+    # 'titles_only': False
 }

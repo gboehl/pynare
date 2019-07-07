@@ -25,10 +25,10 @@ class Pynare(object):
 
     Methods
     -------
-    run(verbose=None)
-        Runs the model again
     get_log()
         Prints the dynare log file for the provided model and returns it as a string
+    run(verbose=None)
+        Runs the model again
     """
 
     def __init__(self, modpath, engine=None, plot=None, verbose=True):

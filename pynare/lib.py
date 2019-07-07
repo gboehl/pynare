@@ -69,7 +69,7 @@ def isnotebook():
 
 
 def plot_eps(path, title):
-    """Plots all *.eps files in folder
+    """Plots all '*.eps' files in folder
 
     Parameters
     ----------
