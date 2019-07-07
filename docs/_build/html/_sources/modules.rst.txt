@@ -1,4 +1,4 @@
-Modul
+Documentation
 ==================
 
 .. automodule:: pynare.core
