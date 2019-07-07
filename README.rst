@@ -1,7 +1,7 @@
 pynare
 ======
 
-This is a slim ``Python`` wrapper around ``dynare``. It runs the ``*.mod`` file, displays the resulting output, and then provides access to the dynare workspace. It works with both, ``Matlab`` and ``Octave``.
+This is a slim ``Python`` API to ``dynare``. It runs the ``*.mod`` file, displays the resulting output, and then provides access to the dynare workspace. It works with both, ``Matlab`` and ``Octave``.
 
 **NOTE:** This is at a very early stage and not well-tested (and not tested at all on Windows). You are very welcome to give comments via the `bug tracker <https://github.com/gboehl/pynare/issues>`_. For now there is no live updating in the Jupyter Notebook, but information will be parsed after the calculation is finished. The reason is that it seems non-trivial to redirect printed matlab output (actual print output via ``ctypes``\ ) to Notebook cells while at the same time multiprocessing is not doing great in the Notebook.
 
