@@ -5,7 +5,7 @@ This is a slim ``Python`` wrapper around ``dynare``. It runs the ``*.mod`` file,
 
 **NOTE:** This is at a very early stage and not well-tested (and not tested at all on Windows). You are very welcome to give comments via the `bug tracker <https://github.com/gboehl/pynare/issues>`_. For now there is no live updating in the Jupyter Notebook, but information will be parsed after the calculation is finished. The reason is that it seems non-trivial to redirect printed matlab output (actual print output via ``ctypes``\ ) to Notebook cells while at the same time multiprocessing is not doing great in the Notebook.
 
-For fellow linux users (and probably mac users as well), this also provieds a script to execute ``dynare`` from comand line.
+For fellow linux users (and probably mac users as well), this also provides a script to execute ``dynare`` from comand line.
 
 
 - Source: https://github.com/gboehl/pynare
@@ -22,7 +22,7 @@ Usage
 
 Package import and running a modfile:
 
-.. code-block::
+.. code-block:: python
 
    from pynare import Pynare
    modfile = '/path/to/greatmodel.mod'
@@ -30,31 +30,31 @@ Package import and running a modfile:
 
 This will give you the usual info about how the Blanchard-Kahn conditions are messed up. Then access the attributes:
 
-.. code-block::
+.. code-block:: python
 
    res.workspace                   # will give you the matlab workspace
    print(res.workspace['beta'])    # it contains all the parameters
    >>> 0.995                       # likely to be the case
 
-I also added the 'oo\ *' matlab-dynare object, which contains a lot of usefull stuff. Note that you could have also accessed it via `res.workspace['oo*\ ']`.
+I also added the ``oo_`` matlab-dynare object, which contains a lot of usefull stuff. Note that you could have also accessed it via ``res.workspace['oo_']``.
 
-.. code-block::
+.. code-block:: python
 
    res.oo_.keys()              # it is a dict, so browse it via `keys()`
    irfs = res.oo_['irfs']      # for instance get your impulse response functions (it's again a dict). Maybe plot them?
 
 Just evoking ``pynare`` from the comand prompt/shell is as simple as
 
-.. code-block::
+.. code-block:: sh
 
-   # pynare modelpath/crazy.mod
+  pynare modelpath/crazy.mod
 
 Installation with ``pip`` (simple)
 --------------------------------------
 
 The simplest way is to `clone <https://github.com/gboehl/pynare/archive/master.zip>`_ the repository, navigate to the cloned folder and run (Windows user from the Anaconda Prompt):
 
-.. code-block::
+.. code-block:: sh
 
    pip3 install .
 
@@ -63,7 +63,7 @@ Installation with ``pip`` (elegant via ``git``\ )
 
 The handy way is to install via the ``git``\ -command. If ``git`` is not yet installed, Linux users just use their respective repos, Windows users get it here: https://git-scm.com/download/win
 
-.. code-block::
+.. code-block:: sh
 
    pip3 install git+https://github.com/gboehl/pynare
 
