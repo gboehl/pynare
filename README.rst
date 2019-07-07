@@ -7,9 +7,10 @@ This is a slim ``Python`` wrapper around ``dynare``. It runs the ``*.mod`` file,
 
 For my fellow linux users, this also provieds a script to execute ``dynare`` from comand line.
 
-Documentation: https://pynare.readthedocs.io/en/latest/
 
-Bug tracker: https://github.com/gboehl/pynare/issues
+- Source: https://github.com/gboehl/pynare
+- Documentation: https://pynare.readthedocs.io/en/latest/
+- Bug tracker: https://github.com/gboehl/pynare/issues
 
 Motivation
 ----------

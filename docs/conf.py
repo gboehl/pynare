@@ -59,5 +59,5 @@ html_context = {
     "github_user": "gboehl", # Username
     "github_repo": "pynare", # Repo name
     "github_version": "master", # Version
-    "conf_py_path": ".", # Path in the checkout to the docs root
+    "conf_py_path": "/source/", # Path in the checkout to the docs root
 }
