@@ -1,11 +1,4 @@
-
-.. toctree::
-   :glob:
-   :maxdepth: 2
-
-   doc
-
-Main modules
+Documentation
 ==================
 
 .. automodule:: pynare.core
@@ -17,11 +10,3 @@ Main modules
    :members:
    :undoc-members:
    :show-inheritance:
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
