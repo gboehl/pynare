@@ -1,4 +1,4 @@
-#!/bin/python2
+#!/bin/python3
 # -*- coding: utf-8 -*-
 
 import os
@@ -10,8 +10,47 @@ from .lib import PipeOutput, isnotebook, print_progress, plot_eps
 
 
 class Pynare(object):
+    """The class holding information about the model and the engine.
+
+    Attributes
+    ----------
+    modpath : str
+        the full path to the *.mod-file
+    engine : str, optional
+        the engine. Must be either 'matlab' or 'octave'. None defaults to 'matlab'
+    plot : bool, optional
+        if True, loads all *.eps files from the model directory and displays them using matplotlib. Defaults to False if engine='matlab' and to True if engine='octave'
+    verbose : bool, optional
+        if True, prints the messages from dynare during calculation. Default is True
+
+    Methods
+    -------
+    run(verbose=None)
+        Runs the model again
+    get_log()
+        Prints the dynare log file for the provided model and returns it as a string
+    """
 
     def __init__(self, modpath, engine=None, plot=None, verbose=True):
+        """
+        Parameters
+        ----------
+        modpath : str
+            the full path to the *.mod-file
+        engine : str, optional
+            the engine. Must be either 'matlab' or 'octave'. None defaults to 'matlab'
+        plot : bool, optional
+            if True, loads all *.eps files from the model directory and displays them using matplotlib. Defaults to False if engine='matlab' and to True if engine='octave'
+        verbose : bool, optional
+            if True, prints the messages from dynare during calculation. Default is True
+
+        Raises
+        ------
+        SyntaxError
+            If provided file is not of '*.mod'-type
+        NotImplementedError
+            If engine is neither 'matlab' nor 'octave'
+        """
 
         if modpath[-4:] != '.mod':
             raise SyntaxError("mod-file must be of '*.mod'-type.")
@@ -27,7 +66,7 @@ class Pynare(object):
         if engine != 'octave':
             if engine is not None and not 'matlag':
                 raise NotImplementedError(
-                    "'engine' must either be 'matlab'(default) or 'octave'")
+                    "'engine' must either be 'matlab' (default) or 'octave'")
             try:
                 import matlab.engine
                 self.engine_type = 'matlab'
@@ -74,6 +113,13 @@ class Pynare(object):
         self.run()
 
     def run(self, verbose=None):
+        """Runs the model again
+
+        Parameters
+        ----------
+        verbose : bool, optional
+            if True, prints the messages from dynare during calculation. Default is True
+        """
 
         if verbose is None:
             verbose = self.verbose
@@ -146,6 +192,13 @@ class Pynare(object):
                 pipe0
 
     def get_log(self):
+        """Prints the dynare log file for the provided model and returns it as a string
+
+        Returns
+        -------
+        str
+            a string containting the text in the log file
+        """
 
         open_lf = open(self.logfile, 'r')
         log_str = open_lf.read()
@@ -155,6 +208,30 @@ class Pynare(object):
 
 
 def pynare(modpath=None, **kwargs):
+    """An imperative backend to Pynare. Runs the model file and returns the Pynare object.
+    ...
+
+    Parameters
+    ----------
+    modpath : str
+        the full path to the *.mod-file
+    engine : str, optional
+        the engine. Must be either 'matlab' or 'octave'. None defaults to 'matlab'
+    plot : bool, optional
+        if True, loads all *.eps files from the model directory and displays them using matplotlib. Defaults to False if engine='matlab' and to True if engine='octave'
+    verbose : bool, optional
+        if True, prints the messages from dynare during calculation. Default is True
+
+    Returns
+    -------
+    object
+        the Pynare object
+
+    Raises
+    -------
+    SyntaxError
+        If provided file is not of '*.mod'-type
+    """
 
     if modpath is None:
         if len(sys.argv) < 2:

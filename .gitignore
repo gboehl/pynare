@@ -1,4 +1,5 @@
 __pycache__/
+sphinx_docs/
 tests/*
 !tests/test.py
 !tests/NK_IR04_rep.mod

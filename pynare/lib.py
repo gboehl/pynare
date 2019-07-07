@@ -1,4 +1,4 @@
-#!/bin/python2
+#!/bin/python3
 # -*- coding: utf-8 -*-
 
 import os
@@ -6,14 +6,31 @@ import sys
 
 
 class PipeOutput(object):
-    '''
-    A context manager that redirects stdout for its scope, usage:
+    """A context manager that redirects stdout for its scope to a file, usage:
 
     with pipeOutput('log.txt'):
         os.system('ls -l')
-    '''
 
-    def __init__(self, logfile, stdout):
+    Attributes
+    ----------
+    logfile : str
+        the full path to the output file
+    stdout : object, optional
+        the stdout object. Defaults to sys.stdout
+    """
+
+    def __init__(self, logfile, stdout=None):
+        """
+        Parameters
+        ----------
+        logfile : str
+            the full path to the output file
+        stdout : object, optional
+            the stdout object. Defaults to sys.stdout
+        """
+        if stdout is None:
+            stdout = sys.stdout
+
         stdout.flush()
         self._origstdout = stdout
         self._oldstdout_fno = os.dup(stdout.fileno())
@@ -32,6 +49,12 @@ class PipeOutput(object):
 
 
 def isnotebook():
+    """A checker whether the code is running in an Jupyter notebook
+
+    Returns
+    -------
+    bool
+    """
 
     try:
         shell = get_ipython().__class__.__name__
@@ -46,6 +69,15 @@ def isnotebook():
 
 
 def plot_eps(path, title):
+    """Plots all *.eps files in folder
+
+    Parameters
+    ----------
+    path : str
+        the full path to the folder in which to look 
+    title : str
+        title string for the output plots
+    """
 
     from PIL import Image
     import matplotlib.pyplot as plt
@@ -65,6 +97,13 @@ def plot_eps(path, title):
 
 
 def print_progress(logfile):
+    """Prints new lines arriving in logfile
+
+    Parameters
+    ----------
+    logfile : str
+        the full path to the logfile
+    """
 
     import time
 
@@ -79,7 +118,5 @@ def print_progress(logfile):
 
         if latest_data:
             sys.stdout.write(latest_data)
-            # if 'Total computing time' in latest_data:
-            # break
         else:
             time.sleep(1e-5)
