@@ -31,7 +31,20 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="pynare">
+  <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">pynare</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#installation-with-pip-simple">Installation with <code class="docutils literal notranslate"><span class="pre">pip</span></code> (simple)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#installation-with-pip-elegant-via-git">Installation with <code class="docutils literal notranslate"><span class="pre">pip</span></code> (elegant via <code class="docutils literal notranslate"><span class="pre">git</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modul</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Indices and tables</a></li>
+</ul>
+</div>
+<div class="section" id="pynare">
 <h1>pynare<a class="headerlink" href="#pynare" title="Permalink to this headline">¶</a></h1>
 <p>This is a slim <code class="docutils literal notranslate"><span class="pre">Python</span></code> wrapper around <code class="docutils literal notranslate"><span class="pre">dynare</span></code>. It runs the <code class="docutils literal notranslate"><span class="pre">*.mod</span></code> file, displays the resulting output, and then provides access to the dynare workspace. It works with both, <code class="docutils literal notranslate"><span class="pre">Matlab</span></code> and <code class="docutils literal notranslate"><span class="pre">Octave</span></code>.</p>
 <p><strong>NOTE:</strong> This is at a very early stage and not well-tested (and not tested at all on Windows). You are very welcome to give comments via the <a class="reference external" href="https://github.com/gboehl/pynare/issues">bug tracker</a>. For now there is no live updating in the Jupyter Notebook, but information will be parsed after the calculation is finished. The reason is that it seems non-trivial to redirect printed matlab output (actual print output via <code class="docutils literal notranslate"><span class="pre">ctypes</span></code>) to Notebook cells while at the same time multiprocessing is not doing great in the Notebook.</p>
@@ -78,20 +91,15 @@ irfs = res.oo_[&#39;irfs&#39;]      # for instance get your impulse response fun
 </pre></div>
 </div>
 <p>Of course, installing <code class="docutils literal notranslate"><span class="pre">dynare</span></code> remains your responibility.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="readme.html">pynare</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="readme.html#motivation">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="readme.html#usage">Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="readme.html#installation-with-pip-simple">Installation with <code class="docutils literal notranslate"><span class="pre">pip</span></code> (simple)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="readme.html#installation-with-pip-elegant-via-git">Installation with <code class="docutils literal notranslate"><span class="pre">pip</span></code> (elegant via <code class="docutils literal notranslate"><span class="pre">git</span></code>)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="indices.html">Indices</a></li>
-</ul>
 </div>
 </div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
 </div>
 
 
@@ -113,8 +121,8 @@ irfs = res.oo_[&#39;irfs&#39;]      # for instance get your impulse response fun
 <h3>Navigation</h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="readme.html">pynare</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="indices.html">Indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modul</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Indices and tables</a></li>
 </ul>
 
 <div class="relations">

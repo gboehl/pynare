@@ -1,0 +1,30 @@
+pynare package
+==============
+
+Submodules
+----------
+
+pynare.core module
+------------------
+
+.. automodule:: pynare.core
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pynare.lib module
+-----------------
+
+.. automodule:: pynare.lib
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pynare
+   :members:
+   :undoc-members:
+   :show-inheritance:
