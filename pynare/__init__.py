@@ -1,4 +1,4 @@
-#!/bin/python2
+#!/bin/python3
 # -*- coding: utf-8 -*-
 
-from .core import Pynare, pynare
+from .core import pynare

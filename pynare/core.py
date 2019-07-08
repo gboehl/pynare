@@ -9,7 +9,7 @@ import tempfile
 from .lib import PipeOutput, isnotebook, print_progress, plot_eps
 
 
-class Pynare(object):
+class model(object):
     """The class holding information about the model and the engine.
 
     Attributes
@@ -112,6 +112,13 @@ class Pynare(object):
 
         self.run()
 
+    def __repr__(self):
+        return "A DSGE Model for Dynare."
+
+    @property
+    def log(self):
+        return self.get_log()
+
     def run(self, verbose=None):
         """Runs the model again
 
@@ -208,7 +215,7 @@ class Pynare(object):
 
 
 def pynare(modpath=None, **kwargs):
-    """An imperative backend to Pynare. Runs the model file and returns the Pynare object.
+    """The API to Pynare. Runs the model file and returns the Pynare model object.
     ...
 
     Parameters
@@ -224,8 +231,8 @@ def pynare(modpath=None, **kwargs):
 
     Returns
     -------
-    object
-        the Pynare object
+    pynare.core.model
+        the Pynare object containing the model
 
     Raises
     -------
@@ -242,13 +249,7 @@ def pynare(modpath=None, **kwargs):
     else:
         need_pause = False
 
-    if not 'engine' in kwargs.keys():
-        try:
-            mod_obj = Pynare(modpath, engine='matlab', **kwargs)
-        except:
-            mod_obj = Pynare(modpath, engine='octave', **kwargs)
-    else:
-        mod_obj = Pynare(modpath, **kwargs)
+    mod_obj = model(modpath, **kwargs)
 
     if need_pause:
         input('\n[press Enter to exit]')

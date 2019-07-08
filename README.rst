@@ -24,9 +24,9 @@ Package import and running a modfile:
 
 .. code-block:: python
 
-   from pynare import Pynare
+   from pynare import pynare
    modfile = '/path/to/greatmodel.mod'
-   res = Pynare(modfile)
+   mod = pynare(modfile)
 
 This will give you the usual info about how the Blanchard-Kahn conditions are messed up. Then access the attributes:
 
@@ -64,5 +64,5 @@ If you care for the bleeding edge developing version (which, at this stage, is r
 
 .. code-block:: sh
 
-   pip3 install git+https://github.com/gboehl/pynare
+   pip install git+https://github.com/gboehl/pynare
 
