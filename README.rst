@@ -49,22 +49,20 @@ Just evoking **pynare** from the comand prompt/shell is as simple as
 
   pynare modelpath/crazy.mod
 
-Installation with ``pip`` (simple)
+Installation via ``pip``
 --------------------------------------
 
-The simplest way is to `clone <https://github.com/gboehl/pynare/archive/master.zip>`_ the repository, navigate to the cloned folder and run (Windows user from the Anaconda Prompt):
+Installation is as simply as running (Windows user from the Anaconda Prompt):
 
 .. code-block:: sh
 
-   pip3 install .
+   pip install pynare
 
-Installation with ``pip`` (elegant via ``git``\ )
--------------------------------------------------------
+Of course, installing Dynare remains your responibility.
 
-The handy way is to install via the ``git``\ -command. If ``git`` is not yet installed, Linux users just use their respective repos, Windows users get it here: https://git-scm.com/download/win
+If you care for the bleeding edge developing version (which, at this stage, is recommended), the handy way is to install via the ``git``-command. If you hav not yet installed ``git``, Windows users get it here: https://git-scm.com/download/win (linux users just use the repo of their distro). Then
 
 .. code-block:: sh
 
    pip3 install git+https://github.com/gboehl/pynare
 
-Of course, installing Dynare remains your responibility.

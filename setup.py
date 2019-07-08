@@ -34,6 +34,7 @@ setup(
     version='0.1',
     author='Gregor Boehl',
     author_email='admin@gregorboehl.com',
+    license='MIT',
     description='run DYNARE from python and access its workspace',
     packages=['pynare'],
     entry_points={
