@@ -32,16 +32,16 @@ This will give you the usual info about how the Blanchard-Kahn conditions are me
 
 .. code-block:: python
 
-   res.workspace                   # will give you the matlab workspace
-   print(res.workspace['beta'])    # it contains all the parameters
+   mod.workspace                   # will give you the matlab workspace
+   print(mod.workspace['beta'])    # it contains all the parameters
    >>> 0.995                       # likely to be the case
 
-I also added the ``oo_`` Dynare-object, which contains a lot of usefull stuff. Note that you could have also accessed it via ``res.workspace['oo_']``.
+I also added the ``oo_`` Dynare-object, which contains a lot of usefull stuff. Note that you could have also accessed it via ``mod.workspace['oo_']``.
 
 .. code-block:: python
 
-   res.oo_.keys()              # it is a dict, so browse it via `keys()`
-   irfs = res.oo_['irfs']      # for instance get your impulse response functions (it's again a dict). Maybe plot them?
+   mod.oo_.keys()              # it is a dict, so browse it via `keys()`
+   irfs = mod.oo_['irfs']      # for instance get your impulse response functions (it's again a dict). Maybe plot them?
 
 Just evoking **pynare** from the comand prompt/shell is as simple as
 

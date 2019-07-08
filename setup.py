@@ -38,7 +38,7 @@ setup(
     long_description_content_type="text/x-rst",
     url="https://pynare.readthedocs.io/en/latest/index.html",
     name='pynare',
-    version='0.1.2',
+    version='0.1.3',
     author='Gregor Boehl',
     author_email='admin@gregorboehl.com',
     license='MIT',
