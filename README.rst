@@ -60,9 +60,8 @@ Installation is as simply as running (Windows user from the Anaconda Prompt):
 
 Of course, installing Dynare remains your responibility.
 
-If you care for the bleeding edge developing version (which, at this stage, is recommended), the handy way is to install via the ``git``-command. If you hav not yet installed ``git``, Windows users get it here: https://git-scm.com/download/win (linux users just use the repo of their distro). Then
+If you care for the bleeding edge developing version (which, at this stage, is recommended), the handy way is to install via the ``git``-command. If you hav not yet installed ``git``, Windows users get it here: https://git-scm.com/download/win (Linux users just use the repo of their distro). Then:
 
 .. code-block:: sh
 
    pip3 install git+https://github.com/gboehl/pynare
-
