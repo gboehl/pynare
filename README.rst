@@ -26,22 +26,22 @@ Package import and running a modfile:
 
    from pynare import pynare
    modfile = '/path/to/greatmodel.mod'
-   mod = pynare(modfile)
+   mod0 = pynare(modfile)
 
-This will give you the usual info about how the Blanchard-Kahn conditions are messed up. Then access the attributes:
+This will give you the usual info about how the Blanchard-Kahn conditions are messed up. The ``mod0``-object contains all the stuff from dynare. Access the attributes with:
 
 .. code-block:: python
 
-   mod.workspace                   # will give you the matlab workspace
-   print(mod.workspace['beta'])    # it contains all the parameters
+   mod0.workspace                   # will give you the matlab workspace
+   print(mod0.workspace['beta'])    # it contains all the parameters
    >>> 0.995                       # likely to be the case
 
 I also added the ``oo_`` Dynare-object, which contains a lot of usefull stuff. Note that you could have also accessed it via ``mod.workspace['oo_']``.
 
 .. code-block:: python
 
-   mod.oo_.keys()              # it is a dict, so browse it via `keys()`
-   irfs = mod.oo_['irfs']      # for instance get your impulse response functions (it's again a dict). Maybe plot them?
+   mod0.oo_.keys()              # it is a dict, so browse it via `keys()`
+   irfs = mod0.oo_['irfs']      # for instance get your impulse response functions (it's again a dict). Maybe plot them?
 
 Just evoking **pynare** from the comand prompt/shell is as simple as
 
