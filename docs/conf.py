@@ -37,7 +37,7 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-version = '0.1.5'
+# version = '0.1.5'
 
 # -- Options for HTML output -------------------------------------------------
 

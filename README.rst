@@ -1,7 +1,7 @@
 **pynare**
 ==========
 
-This is a slim Python API to Dynare. It runs the ``*.mod`` file, displays the resulting output, and then provides access to the Dynare workspace. It works with both, Matlab and Octave.
+This is a slim Python wrapper to Dynare. It runs the ``*.mod`` file, displays the resulting output, and then provides access to the Dynare workspace. It works with both, Matlab and Octave.
 
 For fellow linux users (and probably mac users as well), this also provides a script to execute Dynare from comand line.
 
@@ -14,7 +14,7 @@ For fellow linux users (and probably mac users as well), this also provides a sc
 Motivation
 ----------
 
-The declared goal of this project is to provide access to Dynare without having to learn and use Matlab / Octave. This reflects the acknowledgement that the translation of the Dynare codebase to a more efficient open source alternative is a major effort which may take a while. Meanwhile, **pynare** encourages young researchers to focus on modern open source languages and, as the whole interface is pure Python, still allows them to use Dynare without Matlab.
+The declared goal of this project is to provide access to Dynare without having to learn and use Matlab/Octave. This reflects the acknowledgement that the translation of the Dynare codebase to a more efficient open source alternative is a major effort which may take a while. Meanwhile, **pynare** encourages young researchers to focus on modern open source languages and, as the whole interface is pure Python, still allows them to use Dynare without Matlab.
 
 
 Usage
@@ -52,7 +52,7 @@ Just evoking **pynare** from the comand prompt/shell is as simple as
 Installation via ``pip``
 --------------------------------------
 
-Installation is as simply as running (Windows user from the Anaconda Prompt):
+Installation is as simply as running (Windows users from the Anaconda Prompt):
 
 .. code-block:: sh
 
