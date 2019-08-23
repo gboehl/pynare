@@ -52,11 +52,16 @@ class model(object):
             If engine is neither 'matlab' nor 'octave'
         """
 
-        if modpath[-4:] != '.mod':
-            raise SyntaxError("mod-file must be of '*.mod'-type.")
+        if modpath[-4:] == '.mod':
+            self.prefix = 'dynare '
+            self.modname = os.path.basename(modpath)[:-4]
+        elif modpath[-2:] == '.m':
+            self.prefix = ''
+            self.modname = os.path.basename(modpath)[:-2]
+        else:
+            raise SyntaxError("File must be of `*.mod` or of `*.m`-type.")
 
         self.modpath = modpath
-        self.modname = os.path.basename(modpath)[:-4]
         self.dirpath = os.path.dirname(modpath)
         self.logfile = modpath[:-4] + '.log'
 
@@ -147,7 +152,7 @@ class model(object):
         if self.engine_type == 'matlab':
 
             with PipeOutput(self.logfile, sys.stdout):
-                self.eng.eval('dynare '+self.modname, nargout=0)
+                self.eng.eval(self.prefix+self.modname, nargout=0)
 
             self.workspace = self.eng.workspace
             self.oo_ = self.eng.workspace['oo_']
@@ -160,7 +165,7 @@ class model(object):
                 os.mkdir(pltdir)
 
             with PipeOutput(self.logfile, sys.stdout):
-                self.eng.feval('dynare', self.modname, plot_dir=pltdir)
+                self.eng.feval(self.prefix+self.modname, plot_dir=pltdir)
 
             oct_ws_list = self.eng.eval('who', nout=1)
             self.workspace = {var: self.eng.pull(var) for var in oct_ws_list}
