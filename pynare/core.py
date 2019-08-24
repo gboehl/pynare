@@ -63,7 +63,7 @@ class model(object):
 
         self.modpath = modpath
         self.dirpath = os.path.dirname(modpath)
-        self.logfile = modpath[:-4] + '.log'
+        self.logfile = self.dirpath + self.modname + '.log'
 
         self.verbose = verbose
         self.isnotebook = isnotebook()
