@@ -9,7 +9,7 @@ For fellow linux users (and probably mac users as well), this also provides a sc
 - Documentation: https://pynare.readthedocs.io/en/latest/
 - Bug tracker: https://github.com/gboehl/pynare/issues
 
-**NOTE:** Since I do not have to use dynare anymore, this is no longer under development! Before, this was at a very early stage and not well-tested (and not tested at all on Windows). Comments via the `bug tracker <https://github.com/gboehl/pynare/issues>`_ are very welcome. 
+**NOTE:** Since I do not have to use dynare anymore, this is no longer under development! Before, this was at a very early stage and not well-tested (and not tested at all on Windows). Comments via the `bug tracker <https://github.com/gboehl/pynare/issues>`_ are still welcome. 
 
 Motivation
 ----------
