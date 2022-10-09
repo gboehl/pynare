@@ -59,7 +59,7 @@ Installation is as simply as running (Windows users from the Anaconda Prompt):
 
    pip install pynare
 
-Of course, installing Dynare remains your responibility.
+Of course, installing Dynare remains your responibility. Also, be sure that dynare is added to your octave/matlab path.
 
 If you care for the bleeding edge developing version (which, at this stage, is recommended), the handy way is to install via the ``git``-command. If you hav not yet installed ``git``, Windows users get it here: https://git-scm.com/download/win (Linux users just use the repo of their distro). Then:
 
