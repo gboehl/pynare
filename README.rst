@@ -24,7 +24,8 @@ Package import and running a modfile:
 
 .. code-block:: python
 
-   from pynare import pynare
+   from pynare import pynare, set_dynare_path
+   set_dynare_path('/path/to/dynare')   # e.g. /usr/lib/dynare/matlab/
    modfile = '/path/to/greatmodel.mod'
    mod0 = pynare(modfile)
 
