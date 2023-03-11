@@ -152,6 +152,7 @@ class model(object):
         if self.engine_type == 'matlab':
 
             with PipeOutput(self.logfile, sys.stdout):
+                self.eng.eval(f'addpath ("{dynare_path}")')
                 self.eng.eval(self.prefix+self.modname, nargout=0)
 
             self.workspace = self.eng.workspace
@@ -165,6 +166,7 @@ class model(object):
                 os.mkdir(pltdir)
 
             with PipeOutput(self.logfile, sys.stdout):
+                self.eng.feval(f'addpath ("{dynare_path}")')
                 self.eng.feval(self.prefix+self.modname, plot_dir=pltdir)
 
             oct_ws_list = self.eng.eval('who', nout=1)
@@ -260,3 +262,8 @@ def pynare(modpath=None, **kwargs):
         input('\n[press Enter to exit]')
     else:
         return mod_obj
+
+def set_dynare_path(path):
+    global dynare_path
+    dynare_path = path
+
